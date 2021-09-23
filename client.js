@@ -1,3 +1,4 @@
+const { IP, PORT } = require('./constants');
 const net = require("net");
 
 const stdin = process.stdin;
@@ -5,8 +6,8 @@ const connect = function() {
   const conn = net.createConnection({
     // host: '135.23.223.133',// IP address here,
     // port: 50542 // PORT number here,
-    host: 'localhost',// IP address here,
-    port: 50541 // PORT number here,
+    host: IP,// IP address here,
+    port: PORT // PORT number here,
   });
 
   conn.setEncoding("utf8");
