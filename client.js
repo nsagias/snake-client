@@ -47,26 +47,13 @@ const connect = function() {
   conn.on('data', (data) => {
     console.log(data.toString());
   });
-  const handleUserInput = function(data) {
-    if (data === '\u0003') {
-      process.exit();
-    }
-  }
-  const setupInput = function () {
-    const stdin = process.stdin;
-    stdin.setRawMode(true);
-    stdin.setEncoding('utf8');
-    stdin.on("data", handleUserInput);
-    stdin.resume();
-    return stdin;
-  }
-  setupInput();
+  
+  // setupInput();
  
   
   
   return conn;
 };
 
-console.log("Connecting ...");
 
-module.exports = {connect};
+module.exports = { connect };
