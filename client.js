@@ -15,9 +15,9 @@ const connect = function() {
   conn.on('connect', () => {
     conn.write('Name: NNN');
   });
-  conn.on('connect', () => {
-    conn.write('Move: up'); 
-  });
+  // conn.on('connect', () => {
+  //   conn.write('Move: up'); 
+  // });
   
   // "Move: up" - move up one square (unless facing down)
   // "Move: down" - move down one square (unless facing up)
@@ -44,11 +44,25 @@ const connect = function() {
   //       }, waitTime);
   //     }
   //   });
-  
- 
   conn.on('data', (data) => {
     console.log(data.toString());
   });
+  const handleUserInput = function(data) {
+    if (data === '\u0003') {
+      process.exit();
+    }
+  }
+  const setupInput = function () {
+    const stdin = process.stdin;
+    stdin.setRawMode(true);
+    stdin.setEncoding('utf8');
+    stdin.on("data", handleUserInput);
+    stdin.resume();
+    return stdin;
+  }
+  setupInput();
+ 
+  
   
   return conn;
 };
